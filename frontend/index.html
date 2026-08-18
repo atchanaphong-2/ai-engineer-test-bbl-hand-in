@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Agentic RAG Test</title>
+  <link rel="stylesheet" href="/styles.css?v=2" />
+</head>
+<body>
+  <main>
+    <h1>Data Retriever &rarr; Report Generator</h1>
+    <p class="subtitle">Ask a question about the knowledge base. Follow-ups are remembered.</p>
+
+    <div id="chat-log" aria-live="polite"></div>
+
+    <p id="error-text" class="error hidden"></p>
+
+    <form id="chat-form">
+      <input
+        id="query-input"
+        type="text"
+        placeholder="e.g. What is the policy on international travel?"
+        autocomplete="off"
+        required
+      />
+      <button type="submit">Ask</button>
+    </form>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
