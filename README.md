@@ -219,35 +219,35 @@ in a low-confidence chunk when nothing in the knowledge base actually matches.
 ## Sample queries
 
 Verified end-to-end via the browser UI (`/api/chat` SSE endpoint) against Anthropic's Claude.
-Screenshots below are in [`test_screen_shot/`](test_screen_shot/).
+Screenshots below are in [`query_screen_shot/`](query_screen_shot/).
 
 ### Reimbursement policy
 
 Single-turn retrieval + synthesis from one policy document.
 
-![Reimbursement policy question and retrieved snippets](test_screen_shot/01_reimbursement_policy_query/1_question_and_snippets.png)
-![Reimbursement policy answer](test_screen_shot/01_reimbursement_policy_query/2_answer.png)
+![Reimbursement policy question and retrieved snippets](query_screen_shot/01_reimbursement_policy_query/1_question_and_snippets.png)
+![Reimbursement policy answer](query_screen_shot/01_reimbursement_policy_query/2_answer.png)
 
 ### Data security guardrail
 
 Two adversarial prompts, checking the agent declines/warns based on the Data Security Policy
 rather than complying:
 
-![\"Should I upload the data directly?\"](test_screen_shot/02_data_security_guardrail/1_upload_data_question.png)
-![\"Can I expose company's stored info on the internet?\"](test_screen_shot/02_data_security_guardrail/2_expose_data_question.png)
+![\"Should I upload the data directly?\"](query_screen_shot/02_data_security_guardrail/1_upload_data_question.png)
+![\"Can I expose company's stored info on the internet?\"](query_screen_shot/02_data_security_guardrail/2_expose_data_question.png)
 
 ### Parental leave
 
-![Parental leave question and answer](test_screen_shot/03_parental_leave_query/1_full_qa.png)
+![Parental leave question and answer](query_screen_shot/03_parental_leave_query/1_full_qa.png)
 
 ### Business trip — multi-policy synthesis
 
 One question answered by pulling from three separate policy documents (international travel,
 domestic travel, expense reimbursement) and merging them into one coherent answer:
 
-![Business trip question and retrieved snippets](test_screen_shot/04_business_trip_multi_policy/1_question_and_snippets.png)
-![Business trip answer, part 1](test_screen_shot/04_business_trip_multi_policy/2_answer_part1.png)
-![Business trip answer, part 2](test_screen_shot/04_business_trip_multi_policy/3_answer_part2.png)
+![Business trip question and retrieved snippets](query_screen_shot/04_business_trip_multi_policy/1_question_and_snippets.png)
+![Business trip answer, part 1](query_screen_shot/04_business_trip_multi_policy/2_answer_part1.png)
+![Business trip answer, part 2](query_screen_shot/04_business_trip_multi_policy/3_answer_part2.png)
 
 ## Multi-turn conversation example
 
@@ -257,10 +257,10 @@ that involves a data security agreement, then parental leave), followed by a nat
 follow-up and two memory-recall checks: one asking for information he *did* give (his name) and
 one asking for information he *never* gave (his wife's and son's names).
 
-![Introduction and complex multi-policy question](test_screen_shot/05_multiturn_memory_conversation/1_intro_and_complex_question.png)
-![Retrieved snippets, continued](test_screen_shot/05_multiturn_memory_conversation/2_snippets_continued.png)
-![Answer and first follow-up](test_screen_shot/05_multiturn_memory_conversation/3_answer_and_first_followup.png)
-![Name-recall follow-up](test_screen_shot/05_multiturn_memory_conversation/4_name_recall_followup.png)
+![Introduction and complex multi-policy question](query_screen_shot/05_multiturn_memory_conversation/1_intro_and_complex_question.png)
+![Retrieved snippets, continued](query_screen_shot/05_multiturn_memory_conversation/2_snippets_continued.png)
+![Answer and first follow-up](query_screen_shot/05_multiturn_memory_conversation/3_answer_and_first_followup.png)
+![Name-recall follow-up](query_screen_shot/05_multiturn_memory_conversation/4_name_recall_followup.png)
 
 Two things to notice in the last screenshot: asked "what is my name?", the Report Generator
 answers correctly from conversation history (no retrieval needed); asked for his wife's and
