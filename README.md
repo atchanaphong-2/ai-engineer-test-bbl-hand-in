@@ -28,6 +28,27 @@ multi-turn conversation memory via LangGraph's checkpointer (see below).
 
 ## Architectural decision: orchestration pattern
 
+```mermaid
+flowchart TD
+    CLI["main.py (CLI)"] --> Orchestrator
+    UI["frontend/ (chat UI)"] -->|"POST /api/chat (SSE)"| API["FastAPI backend"]
+    API --> Orchestrator
+
+    subgraph Orchestrator["RagOrchestrator — LangGraph StateGraph"]
+        Retrieve["retrieve node"] --> DataRetriever["Data Retriever Agent"]
+        DataRetriever --> Generate["generate node"]
+        Generate --> ReportGen["Report Generator Agent"]
+    end
+
+    MemorySaver[("MemorySaver checkpointer,<br/>keyed by thread_id")] -.->|"persists history"| Orchestrator
+
+    DataRetriever -->|"search_knowledge_base()"| Tool["Retrieval tool (async, FAISS)"]
+    Tool --> KB[("knowledge_base.txt")]
+    Tool --> Cache[("kb_index.sqlite3 cache")]
+
+    ReportGen --> Answer["Answer streamed to user"]
+```
+
 **Context.** The brief names two coordination patterns as examples — "handoff" and
 "agent-as-tool" — but explicitly permits "any other pattern" to coordinate the two agents.
 `RagOrchestrator` uses a fixed, sequential LangGraph `StateGraph` (`retrieve -> generate`):
